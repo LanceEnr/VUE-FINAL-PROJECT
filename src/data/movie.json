@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Spaceman",
+    "genre": "Sci-Fi, Thriller, Suspense",
+    "cover": "https://m.media-amazon.com/images/M/MV5BMGMyNDg2ZjItMzk5MC00NzJmLTlmMDgtMmFjNjFmODg5ZTY5XkEyXkFqcGdeQXVyMTY3ODkyNDkz._V1_.jpg",
+    "description": "Six months into a solo mission, a lonely astronaut confronts the cracks in his marriage with help from a mysterious creature he discovers on his ship.",
+    "price": 599
+  },
+  {
+    "name": "Sixty Minutes",
+    "genre": "Action, Sport",
+    "cover": "https://resizing.flixster.com/SANlbIKB9vY2XSk_8lW5c_doWbk=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzFlYTY0ZTFhLWFiM2UtNDhhMS1iM2YwLWZiYzc1YWEyNDMzYi5qcGc=",
+    "description": "Desperate not to lose custody, a mixed martial arts fighter makes dangerous enemies when he ditches a matchup to race to his daughter's birthday party.",
+    "price": 499
+  },
+  {
+    "name": "Death Whisperer",
+    "genre": "Horror, Thriller",
+    "cover": "https://m.media-amazon.com/images/M/MV5BNWQzY2JhMmQtZjQzMy00MjY1LWI1NDQtZWQxZGJhOWJlMTgwXkEyXkFqcGdeQXVyNTkzNjEwMjI@._V1_.jpg",
+    "description": "When the family is facing such a supernatural threat. Former soldier and hot-blooded eldest son, Yak, must return home to solve all the problems.",
+    "price": 998
+  },
+  {
+    "name": "Ballerina",
+    "genre": "Action, Thriller",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/6/6a/Ballerina_%282023_film%29.jpg",
+    "description": "Grieving the loss of a best friend she could not protect, former bodyguard Ok-ju sets out to fulfil her dear friend's last wish: sweet, sweet revenge.",
+    "price": 798
+  }
+]
