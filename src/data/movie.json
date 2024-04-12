@@ -1,30 +1,44 @@
 [
   {
-    "name": "Spaceman",
-    "genre": "Sci-Fi, Thriller, Suspense",
-    "cover": "https://m.media-amazon.com/images/M/MV5BMGMyNDg2ZjItMzk5MC00NzJmLTlmMDgtMmFjNjFmODg5ZTY5XkEyXkFqcGdeQXVyMTY3ODkyNDkz._V1_.jpg",
-    "description": "Six months into a solo mission, a lonely astronaut confronts the cracks in his marriage with help from a mysterious creature he discovers on his ship.",
-    "price": 599
+    "name": "Heneral Luna",
+    "genre": "War, Comedy, Action, Adventure, Drama, Historical Fiction ",
+    "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1445659470i/26148126.jpg",
+    "description": "Set during the Philippine-American war, Heneral Luna follows the life of one of Philippine History's most brilliant soldier, General Antonio Luna, as he tries to lead his countrymen against colonial masters new and old, and to rise above their own raging disputes to fulfill the promise of the Philippine Revolution.",
+    "price": 699
   },
   {
-    "name": "Sixty Minutes",
-    "genre": "Action, Sport",
-    "cover": "https://resizing.flixster.com/SANlbIKB9vY2XSk_8lW5c_doWbk=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzFlYTY0ZTFhLWFiM2UtNDhhMS1iM2YwLWZiYzc1YWEyNDMzYi5qcGc=",
-    "description": "Desperate not to lose custody, a mixed martial arts fighter makes dangerous enemies when he ditches a matchup to race to his daughter's birthday party.",
+    "name": "Pagpag",
+    "genre": "Horror, Drama, Action, Thriller, Romance, Supernatural, Comedy",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Pagpag_film.jpg/220px-Pagpag_film.jpg",
+    "description": "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.",
     "price": 499
   },
   {
-    "name": "Death Whisperer",
-    "genre": "Horror, Thriller",
-    "cover": "https://m.media-amazon.com/images/M/MV5BNWQzY2JhMmQtZjQzMy00MjY1LWI1NDQtZWQxZGJhOWJlMTgwXkEyXkFqcGdeQXVyNTkzNjEwMjI@._V1_.jpg",
+    "name": "Praybeyt Benjamin",
+    "genre": "Horror, Action, Comedy, Drama",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/6/6c/The_Amazing_Praybeyt_Benjamin_poster.jpg",
     "description": "When the family is facing such a supernatural threat. Former soldier and hot-blooded eldest son, Yak, must return home to solve all the problems.",
-    "price": 998
+    "price": 399
   },
   {
-    "name": "Ballerina",
-    "genre": "Action, Thriller",
-    "cover": "https://upload.wikimedia.org/wikipedia/en/6/6a/Ballerina_%282023_film%29.jpg",
-    "description": "Grieving the loss of a best friend she could not protect, former bodyguard Ok-ju sets out to fulfil her dear friend's last wish: sweet, sweet revenge.",
-    "price": 798
+    "name": "Ang Pangarap Kong Holdap",
+    "genre": "Comedy, Drama, Crime Fiction",
+    "cover": "https://i1.sndcdn.com/artworks-5JDcdCb6o6iO-0-t500x500.jpg",
+    "description": "The film follows Eman Durucut (Pepe Herrera), a down-on-his-luck robber, who leads a group of fellow robbers consisting of himself, Toto (Jerald Napoles), and Carlo (Jelson Bay), as well as newcomer Nicoy (Paolo Contis), who, unbeknownst to them, is an undercover cop. Eman aspires his group to be the number one gang in Barangay Husay to follow the legacy of his father who is known for being the most notorious in their locale.",
+    "price": 599
+  },
+  {
+    "name": "Ang Panday(2017)",
+    "genre": "Action, Horror, Adventure, Fantasy, Superhero",
+    "cover": "https://m.media-amazon.com/images/M/MV5BOWU0MTkzOTAtYzdmNS00ZWE1LWEzMmEtYWE5ZTYxMjk2OGQwXkEyXkFqcGdeQXVyNTI5NjIyMw@@._V1_.jpg",
+    "description": "Carlo J. Caparas' Ang Panday (lit. 'The Blacksmith') is a 2017 Filipino superhero fantasy action film based on the eponymous comic book character created by Carlo J. Caparas along with his co-creator Steve Gan. Serving as the seventh installment of the Panday series, the film is directed and produced by Coco Martin, who also stars in the title role.",
+    "price": 799
+  },
+  {
+    "name": "The House of Us",
+    "genre": "Comedy, Romance, Drama",
+    "cover": "https://i.mydramalist.com/q3R62_4c.jpg",
+    "description": "The film is a story about the young couple Primo (Padilla) and George (Bernardo), who dream of growing old together. However, as their feelings go deep for each other, they have to deal with the struggles of being in a long-term relationship and the harsh reality of life.",
+    "price": 999
   }
 ]
