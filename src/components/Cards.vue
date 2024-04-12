@@ -1,5 +1,6 @@
 <script>
-import { onMounted, ref } from 'vue';
+import MovieTrailerPopup from './MovieTrailerPopup.vue'; // adjust the path as necessary
+import { onMounted, ref, reactive } from 'vue';
 import {
   isTouchDevice,
   movies,
@@ -13,8 +14,13 @@ import {
 } from '@/services/index';
 
 export default {
+  components: {
+    MovieTrailerPopup
+  },
   setup() {
     const cardsElement = ref(null);
+    const isTrailerVisible = ref(false);
+    const currentTrailer = ref('');
 
     onMounted(() => {
       const cardsEl = cardsElement.value;
@@ -22,8 +28,15 @@ export default {
       setTimeout(() => cardsEl.classList.remove('demo'), 2500);
     });
 
+    const showTrailer = (trailer) => {
+      currentTrailer.value = trailer;
+      isTrailerVisible.value = true;
+    };
+
     return {
       cardsElement,
+      isTrailerVisible,
+      currentTrailer,
       isTouchDevice,
       movies,
       currentMovieCover,
@@ -33,6 +46,7 @@ export default {
       addToCart,
       truncate,
       thousandFormat,
+      showTrailer
     };
   },
 };
@@ -42,7 +56,7 @@ export default {
   <section class="movie" @wheel.prevent="horizontalScroll($event)">
     <section :class="['cards', { cartOpen: isCartOpen }]" ref="cardsElement">
       <article :class="['card', { hoverInteraction: !isTouchDevice }]" v-for="(movie, idx) in movies.data"
-        :key="movie.name">
+        :key="movie.name" @click="showTrailer(movie.trailer)">
         <div class="card-left">
           <div class="cover" :style="getCoverStyle(movie.cover)"></div>
         </div>
@@ -51,14 +65,14 @@ export default {
           <h4 class="genre">{{ movie.genre }}</h4>
           <p class="description">{{ truncate(movie.description, 95) }}</p>
           <div class="price">₱ {{ thousandFormat(movie.price) }}</div>
-          <button :class="['add', { inCart: movie.isInCart }]" @click="addToCart(movie, idx, $event)">
+          <button :class="['add', { inCart: movie.isInCart }]" @click.stop="addToCart(movie, idx, $event)">
             {{ movie.isInCart ? 'Already in Cart' : 'Add to Cart' }}
           </button>
         </div>
       </article>
     </section>
   </section>
-
+  <<MovieTrailerPopup :youtubeLink="currentTrailer" :isVisible.sync="isTrailerVisible" />
   <div v-show="currentMovieCover" class="moving-cover" :style="getCoverStyle(currentMovieCover)"></div>
 </template>
 
