@@ -1,6 +1,6 @@
 <script>
 import MovieTrailerPopup from './MovieTrailerPopup.vue'; // adjust the path as necessary
-import { onMounted, ref, reactive } from 'vue';
+import { onMounted, ref, reactive, watch } from 'vue'; // Import 'watch' here
 import {
   isTouchDevice,
   movies,
@@ -22,10 +22,19 @@ export default {
     const isTrailerVisible = ref(false);
     const currentTrailer = ref('');
 
+    // Watcher to log visibility changes
+    watch(isTrailerVisible, (newValue) => {
+      console.log('Visibility changed:', newValue);
+    });
+
     onMounted(() => {
       const cardsEl = cardsElement.value;
       cardsEl.classList.add('demo');
       setTimeout(() => cardsEl.classList.remove('demo'), 2500);
+    });
+
+    watch(isTrailerVisible, (newValue) => {
+      console.log('Visibility changed:', newValue);
     });
 
     const showTrailer = (trailer) => {
@@ -72,7 +81,8 @@ export default {
       </article>
     </section>
   </section>
-  <<MovieTrailerPopup :youtubeLink="currentTrailer" :isVisible.sync="isTrailerVisible" />
+  <MovieTrailerPopup :youtubeLink="currentTrailer" :isVisible="isTrailerVisible"
+    @update:isVisible="value => isTrailerVisible = value" />
   <div v-show="currentMovieCover" class="moving-cover" :style="getCoverStyle(currentMovieCover)"></div>
 </template>
 
@@ -97,6 +107,7 @@ export default {
 .card
   margin: 0 80px
   padding: 20px 20px
+  cursor: pointer
   width: 484px
   display: inline-flex
   flex-shrink: 0
