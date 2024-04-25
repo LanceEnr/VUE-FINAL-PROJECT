@@ -1,6 +1,6 @@
 <script>
-import MovieTrailerPopup from './MovieTrailerPopup.vue'; // adjust the path as necessary
-import { onMounted, ref, reactive, watch } from 'vue'; // Import 'watch' here
+import MovieTrailerPopup from './MovieTrailerPopup.vue';
+import { ref, watch, onMounted } from 'vue';
 import {
   isTouchDevice,
   movies,
@@ -21,6 +21,7 @@ export default {
     const cardsElement = ref(null);
     const isTrailerVisible = ref(false);
     const currentTrailer = ref('');
+    const currentMovie = ref(null);  // Initialize the currentMovie reference
 
     // Watcher to log visibility changes
     watch(isTrailerVisible, (newValue) => {
@@ -33,12 +34,9 @@ export default {
       setTimeout(() => cardsEl.classList.remove('demo'), 2500);
     });
 
-    watch(isTrailerVisible, (newValue) => {
-      console.log('Visibility changed:', newValue);
-    });
-
-    const showTrailer = (trailer) => {
-      currentTrailer.value = trailer;
+    const showTrailer = (movie) => {
+      currentTrailer.value = movie.trailer; // Set the trailer URL
+      currentMovie.value = movie; // Set the current movie object
       isTrailerVisible.value = true;
     };
 
@@ -46,6 +44,7 @@ export default {
       cardsElement,
       isTrailerVisible,
       currentTrailer,
+      currentMovie, // Make sure to return this so it's usable in the template
       isTouchDevice,
       movies,
       currentMovieCover,
@@ -65,7 +64,7 @@ export default {
   <section class="movie" @wheel.prevent="horizontalScroll($event)">
     <section :class="['cards', { cartOpen: isCartOpen }]" ref="cardsElement">
       <article :class="['card', { hoverInteraction: !isTouchDevice }]" v-for="(movie, idx) in movies.data"
-        :key="movie.name" @click="showTrailer(movie.trailer)">
+        :key="movie.name" @click="showTrailer(movie)">
         <div class="card-left">
           <div class="cover" :style="getCoverStyle(movie.cover)"></div>
         </div>
@@ -81,8 +80,14 @@ export default {
       </article>
     </section>
   </section>
-  <MovieTrailerPopup :youtubeLink="currentTrailer" :isVisible="isTrailerVisible"
-    @update:isVisible="value => isTrailerVisible = value" />
+  <MovieTrailerPopup
+    :youtubeLink="currentTrailer"
+    :isVisible="isTrailerVisible"
+    :movie="currentMovie"
+    :thousandFormat="thousandFormat"  
+    @update:isVisible="value => isTrailerVisible = value"
+  />
+
   <div v-show="currentMovieCover" class="moving-cover" :style="getCoverStyle(currentMovieCover)"></div>
 </template>
 
