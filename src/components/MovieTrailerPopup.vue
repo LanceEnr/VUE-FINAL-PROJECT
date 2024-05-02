@@ -2,15 +2,20 @@
   <transition name="fade">
     <div v-if="isVisible" class="overlay" @click="handleOverlayClick">
       <div class="modal" @click.stop>
-        <div class="content">
-          <iframe :src="youtubeEmbedLink" frameborder="0"
+        <div class="video-container">
+          <iframe width="960" height="540" :src="youtubeEmbedLink" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen style="width: 100%; height: 100%;"></iframe>
-          <div class="movie-details">
-            <h2>{{ movie.name }}</h2>
-            <p>{{ movie.description }}</p>
-            <h4>Genre: {{ movie.genre }}</h4>
-            <h4>Price: ₱ {{ thousandFormat(movie.price) }}</h4>
+            allowfullscreen></iframe>
+          <div class="hover-overlay"></div> <!-- Disable interaction overlay specifically for the iframe -->
+          <div class="gradient-overlay"></div> <!-- Enhanced Gradient fade effect -->
+          <div class="movie-name-overlay">{{ movie.name }}</div> <!-- New div for movie name -->
+        </div>
+        <div class="details">
+          <p class="genre">{{ movie.genre }}</p>
+          <p class="description">{{ movie.description }}</p>
+          <div class="pricing">
+            <span class="price"> ₱ {{ thousandFormat(movie.price) }}</span>
+            <button class="add-to-cart" @click="addToCart(movie)">Add to Cart</button>
           </div>
         </div>
       </div>
@@ -19,28 +24,26 @@
 </template>
 
 <script>
-import { thousandFormat } from '@/services/index';
-
 export default {
   props: {
     youtubeLink: String,
     isVisible: Boolean,
-    movie: Object
+    movie: Object,
+    thousandFormat: Function
   },
   computed: {
     youtubeEmbedLink() {
-      return `https://www.youtube.com/embed/${this.youtubeLink}`;
+      return `https://www.youtube.com/embed/${this.youtubeLink}?autoplay=1&controls=0&showinfo=0&modestbranding=1&loop=1&playlist=${this.youtubeLink}`;
     }
   },
   methods: {
     handleOverlayClick(event) {
       this.$emit('update:isVisible', false);
+    },
+    addToCart(movie) {
+      this.$emit('add-to-cart', movie);
+      this.$emit('update:isVisible', false);
     }
-  },
-  setup() {
-    return {
-      thousandFormat
-    };
   }
 };
 </script>
@@ -66,52 +69,99 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px; /* Adds padding around the modal */
+  backdrop-filter: blur(8px);
 }
 
 .modal {
-  width: 80%; /* Adjust based on your design preference */
-  max-width: 1200px; /* or any other max-width */
+  position: relative;
+  width: 960px;
+  background-color: rgba(0, 0, 0, 1);
+  color: white;
   display: flex;
-  flex-direction: row;
-  height: auto; /* Adjust this to 'auto' or a specific value like '600px' */
+  flex-direction: column;
+  align-items: center;
 }
 
-
-.content {
-  display: flex;
-  width: 100%; /* Ensures the content uses all the space of .modal */
-  background-color: #333131;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-iframe {
-  flex-grow: 2; /* Adjusts how much space the iframe should take relative to details */
-  min-height: 450px; /* Set a minimum height for better visibility */
+.video-container {
+  width: 100%;
+  position: relative;
 }
 
 .modal iframe {
-  border-radius: 20px;
-  /* Adjust this value to your preference */
+  border-radius: 8px;
+  width: 100%;
+  height: 540px;
 }
 
-.movie-details {
-  flex-basis: 300px; /* Fixed width for details */
-  padding: 20px;
+.hover-overlay,
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.movie-name-overlay {
+  position: absolute;
+  bottom: 25px;
+  /* Adjust to control distance from bottom */
+  left: 30px;
+  /* Adjust to control distance from left */
+  color: white;
+  font-weight: bold;
+  /* Text color */
+  font-size: 56px;
+  /* Text size */
+  z-index: 2;
+  /* Ensures it's above the iframe and overlays */
+}
+
+.hover-overlay {
+  background-color: transparent;
+}
+
+.gradient-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 5%, transparent 100%);
+  pointer-events: none;
+}
+
+.details {
+  padding: 0 30px;
+  text-align: left;
+  width: 100%;
+}
+
+
+.genre {
+  font-size: 20px;
+  color: #999;
+  margin-bottom: 5px;
+}
+
+.description {
+  font-size: 16px;
+  color: #ccc;
+}
+
+.pricing {
+  margin-top: 20px;
+  font-size: 20px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: #f4f4f4; /* Light grey background to enhance readability */
-  overflow: auto; /* Allows scrolling if the content is taller than the container */
-  color: #333; /* Darker text for better contrast */
-  font-size: 16px; /* Larger font size for better readability */
-  line-height: 1.5; /* Increased line height for clearer separation of lines */
-  font-family: 'Roboto', sans-serif;
 }
 
-.movie-details h2, h4, p {
-  margin-bottom: 10px; /* Adds space between paragraphs and headings */
+.price {
+  padding: 10px;
 }
 
+.add-to-cart {
+  background-color: #e50914;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin-left: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
 </style>
