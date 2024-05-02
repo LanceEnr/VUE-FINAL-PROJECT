@@ -8,15 +8,17 @@
             allowfullscreen></iframe>
           <div class="hover-overlay"></div> <!-- Disable interaction overlay specifically for the iframe -->
           <div class="gradient-overlay"></div> <!-- Enhanced Gradient fade effect -->
-          <div class="movie-name-overlay">{{ movie.name }}</div> <!-- New div for movie name -->
+          <div class="movie-name-overlay">{{ movie.name }} <div class="pricing">
+              ₱ {{ thousandFormat(movie.price) }}
+            </div>
+          </div> <!-- New div for movie name -->
         </div>
         <div class="details">
           <p class="genre">{{ movie.genre }}</p>
           <p class="description">{{ movie.description }}</p>
-          <div class="pricing">
-            <span class="price"> ₱ {{ thousandFormat(movie.price) }}</span>
-            <button class="add-to-cart" @click="addToCart(movie)">Add to Cart</button>
-          </div>
+          <!-- <div class="pricing">
+            ₱ {{ thousandFormat(movie.price) }}
+          </div> -->
         </div>
       </div>
     </div>
@@ -105,7 +107,7 @@ export default {
 
 .movie-name-overlay {
   position: absolute;
-  bottom: 25px;
+  bottom: 15px;
   /* Adjust to control distance from bottom */
   left: 30px;
   /* Adjust to control distance from left */
@@ -129,7 +131,7 @@ export default {
 
 .details {
   padding: 0 30px;
-  text-align: left;
+  text-align: justify;
   width: 100%;
 }
 
@@ -146,13 +148,9 @@ export default {
 }
 
 .pricing {
-  margin-top: 20px;
-  font-size: 20px;
-  display: flex;
-}
+  color: red;
+  font-size: 30px;
 
-.price {
-  padding: 10px;
 }
 
 .add-to-cart {
