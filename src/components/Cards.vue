@@ -21,30 +21,29 @@ export default {
     const cardsElement = ref(null);
     const isTrailerVisible = ref(false);
     const currentTrailer = ref('');
-    const currentMovie = ref(null);  // Initialize the currentMovie reference
-
-    // Watcher to log visibility changes
-    watch(isTrailerVisible, (newValue) => {
-      console.log('Visibility changed:', newValue);
-    });
-
-    onMounted(() => {
-      const cardsEl = cardsElement.value;
-      cardsEl.classList.add('demo');
-      setTimeout(() => cardsEl.classList.remove('demo'), 2500);
-    });
+    const currentMovie = ref(null);
+    const hoverCover = ref(''); // State to hold the cover image URL on hover
 
     const showTrailer = (movie) => {
-      currentTrailer.value = movie.trailer; // Set the trailer URL
-      currentMovie.value = movie; // Set the current movie object
+      currentTrailer.value = movie.trailer;
+      currentMovie.value = movie;
       isTrailerVisible.value = true;
+    };
+
+    const handleMouseEnter = (movie) => {
+      hoverCover.value = movie.cover; // Set the hover cover to the movie's cover image
+    };
+
+    const handleMouseLeave = () => {
+      hoverCover.value = ''; // Clear the hover cover image
     };
 
     return {
       cardsElement,
       isTrailerVisible,
       currentTrailer,
-      currentMovie, // Make sure to return this so it's usable in the template
+      currentMovie,
+      hoverCover,
       isTouchDevice,
       movies,
       currentMovieCover,
@@ -54,17 +53,19 @@ export default {
       addToCart,
       truncate,
       thousandFormat,
-      showTrailer
+      showTrailer,
+      handleMouseEnter,
+      handleMouseLeave
     };
   },
 };
 </script>
 
 <template>
-  <section class="movie" @wheel.prevent="horizontalScroll($event)">
+  <section class="movie" @wheel.prevent="horizontalScroll($event)" :style="{ backgroundImage: `url(${hoverCover})` }">
     <section :class="['cards', { cartOpen: isCartOpen }]" ref="cardsElement">
       <article :class="['card', { hoverInteraction: !isTouchDevice }]" v-for="(movie, idx) in movies.data"
-        :key="movie.name" @click="showTrailer(movie)">
+        :key="movie.name" @click="showTrailer(movie)" @mouseenter="handleMouseEnter(movie)" @mouseleave="handleMouseLeave">
         <div class="card-left">
           <div class="cover" :style="getCoverStyle(movie.cover)"></div>
         </div>
@@ -87,8 +88,6 @@ export default {
     :thousandFormat="thousandFormat"  
     @update:isVisible="value => isTrailerVisible = value"
   />
-
-  <div v-show="currentMovieCover" class="moving-cover" :style="getCoverStyle(currentMovieCover)"></div>
 </template>
 
 <style lang="sass" scoped>
@@ -96,6 +95,7 @@ export default {
 
 .movie
   height: 100%
+  transition: background-image 1.5s ease-in-out
 
 .cards
   padding: 0 20%
