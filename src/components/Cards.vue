@@ -94,12 +94,12 @@ export default {
 @import '@/assets/style.sass'
 
 .movie
-  width: 100vw  // Ensures the section is as wide as the viewport
-  height: 100vh  // Ensures the section is as tall as the viewport
-  background-size: cover  // Ensures that the background covers the entire element
-  background-position: center  // Centers the background image
-  background-repeat: no-repeat  // Prevents repeating the background image
-  transition: background-image 0.5s ease-in-out
+  width: 100vw
+  height: 100vh
+  background-size: cover
+  background-position: center
+  background-repeat: no-repeat
+  transition: background-image 0.7s ease-in-out, background-size 0.7s ease-in-out, opacity 0.7s ease-in-out
 
 .cards
   padding: 0 20%
@@ -123,12 +123,15 @@ export default {
   background-color: rgba(white, 0.9)
   border-radius: 5px
   transform: translateY(15%)
+  transition: transform 0.5s ease, box-shadow 0.5s ease 
   transition: $transitionTime
   &.hoverInteraction
     &:hover
-      transform: translateY(5px)
+      transform: translateY(5px) scale(1.05) // subtle zoom effect on hover
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2) // add shadow for depth
       .cover
-        transform: translateY(-15px)
+        transform: scale(1.1) // subtle zoom on the cover image
+        filter: brightness(1.1) contrast(1.2) // increase brightness and contrast for dramatic effect
     button
       &:hover
         color: white
