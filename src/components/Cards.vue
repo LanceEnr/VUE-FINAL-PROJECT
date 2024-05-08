@@ -31,7 +31,7 @@ export default {
     };
 
     const handleMouseEnter = (movie) => {
-      hoverCover.value = movie.cover; // Set the hover cover to the movie's cover image
+      hoverCover.value = movie.hoverCoverUrl; // Set the hover cover to the movie's hover image URL
     };
 
     const handleMouseLeave = () => {
@@ -62,7 +62,7 @@ export default {
 </script>
 
 <template>
-  <section class="movie" @wheel.prevent="horizontalScroll($event)" :style="{ backgroundImage: `url(${hoverCover})` }">
+  <section class="movie" @wheel.prevent="horizontalScroll($event)" :style="{ backgroundImage: `url(${hoverCover})`, backgroundSize: 'cover' }">
     <section :class="['cards', { cartOpen: isCartOpen }]" ref="cardsElement">
       <article :class="['card', { hoverInteraction: !isTouchDevice }]" v-for="(movie, idx) in movies.data"
         :key="movie.name" @click="showTrailer(movie)" @mouseenter="handleMouseEnter(movie)" @mouseleave="handleMouseLeave">
@@ -94,8 +94,12 @@ export default {
 @import '@/assets/style.sass'
 
 .movie
-  height: 100%
-  transition: background-image 1.5s ease-in-out
+  width: 100vw  // Ensures the section is as wide as the viewport
+  height: 100vh  // Ensures the section is as tall as the viewport
+  background-size: cover  // Ensures that the background covers the entire element
+  background-position: center  // Centers the background image
+  background-repeat: no-repeat  // Prevents repeating the background image
+  transition: background-image 0.5s ease-in-out
 
 .cards
   padding: 0 20%
