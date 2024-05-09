@@ -71,6 +71,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100;
   backdrop-filter: blur(8px);
 }
 
@@ -82,6 +83,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 101;
 }
 
 .video-container {

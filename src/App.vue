@@ -123,6 +123,7 @@ html, body
   @media screen and (max-width: 767px) // < 768
     font-size: 28px
 
+
 .cart
   position: fixed
   right: 50px
@@ -159,4 +160,7 @@ html, body
   &:hover
     color: $black
     background-color: $mediumGrey
+
+  button
+  z-index: 200
 </style>

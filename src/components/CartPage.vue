@@ -94,6 +94,7 @@ export default {
   &.cartOpen
     opacity: 1
     pointer-events: initial
+    z-index: 150
 
 .message
   color: $mediumGrey
