@@ -22,7 +22,7 @@ export default {
     const isTrailerVisible = ref(false);
     const currentTrailer = ref('');
     const currentMovie = ref(null);
-    const hoverCover = ref(''); // State to hold the cover image URL on hover
+    const hoverCover = ref('');
 
     const showTrailer = (movie) => {
       currentTrailer.value = movie.trailer;
@@ -31,11 +31,11 @@ export default {
     };
 
     const handleMouseEnter = (movie) => {
-      hoverCover.value = movie.hoverCoverUrl; // Set the hover cover to the movie's hover image URL
+      hoverCover.value = movie.hoverCoverUrl;
     };
 
     const handleMouseLeave = () => {
-      hoverCover.value = ''; // Clear the hover cover image
+      hoverCover.value = '';
     };
 
     return {

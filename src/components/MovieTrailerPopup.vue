@@ -6,19 +6,16 @@
           <iframe width="960" height="540" :src="youtubeEmbedLink" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
-          <div class="hover-overlay"></div> <!-- Disable interaction overlay specifically for the iframe -->
-          <div class="gradient-overlay"></div> <!-- Enhanced Gradient fade effect -->
+          <div class="hover-overlay"></div>
+          <div class="gradient-overlay"></div>
           <div class="movie-name-overlay">{{ movie.name }} <div class="pricing">
               ₱ {{ thousandFormat(movie.price) }}
             </div>
-          </div> <!-- New div for movie name -->
+          </div>
         </div>
         <div class="details">
           <p class="genre">{{ movie.genre }}</p>
           <p class="description">{{ movie.description }}</p>
-          <!-- <div class="pricing">
-            ₱ {{ thousandFormat(movie.price) }}
-          </div> -->
         </div>
       </div>
     </div>

@@ -120,7 +120,6 @@ function addToCart(movie, idx, e) {
   isAddingToCart = true;
   currentMovieCover.value = movie.cover;
 
-  // Do after DOM element refreshing
   nextTick(() => {
     const coverEl = e.target
       .closest('.card-right')
@@ -128,8 +127,7 @@ function addToCart(movie, idx, e) {
 
     gsap.from('.moving-cover', {
       duration: 0.8,
-      // getBoundingClientRect() vs offset:
-      // In case of transforms, the offsetWidth and offsetHeight returns the element's layout width and height, while getBoundingClientRect() returns the rendering width and height. As an example, if the element has width: 100px; and transform: scale(0.5); the getBoundingClientRect() will return 50 as the width, while offsetWidth will return 100.
+      
       left: coverEl.getBoundingClientRect().left,
       top: coverEl.getBoundingClientRect().top,
       width: coverEl.getBoundingClientRect().width * 0.6,
